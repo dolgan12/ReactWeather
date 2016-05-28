@@ -1,11 +1,14 @@
-import React from 'react'
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 import Main from 'Main';
 import Weather from 'Weather';
 import About from 'About';
 import Examples from 'Examples';
 
+// Load foundation
+require('style!css!foundation-sites/dist/foundation.min.css');
+$(document).foundation();
 
 ReactDOM.render(
     <Router history={hashHistory}>
