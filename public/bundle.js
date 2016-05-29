@@ -25036,6 +25036,10 @@
 
 	var _openweathermap2 = _interopRequireDefault(_openweathermap);
 
+	var _ErrorModal = __webpack_require__(253);
+
+	var _ErrorModal2 = _interopRequireDefault(_ErrorModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25062,18 +25066,23 @@
 	  _createClass(Weather, [{
 	    key: 'handleSearch',
 	    value: function handleSearch(location) {
-	      var then = this;
+	      var that = this;
 
-	      this.setState({ isLoading: true });
+	      this.setState({
+	        isLoading: true,
+	        errorMessage: undefined
+	      });
 	      _openweathermap2.default.getTemp(location).then(function (data) {
-	        then.setState({
+	        that.setState({
 	          location: data.location,
 	          temp: data.temp,
 	          isLoading: false
 	        });
-	      }, function (errorMessage) {
-	        alert(errorMessage);
-	        then.setState({ isLoading: false });
+	      }, function (e) {
+	        that.setState({
+	          isLoading: false,
+	          errorMessage: e.message
+	        });
 	      });
 	    }
 	  }, {
@@ -25083,6 +25092,7 @@
 	      var isLoading = _state.isLoading;
 	      var temp = _state.temp;
 	      var location = _state.location;
+	      var errorMessage = _state.errorMessage;
 
 
 	      function renderMessage() {
@@ -25097,6 +25107,12 @@
 	        }
 	      }
 
+	      function renderError() {
+	        if (typeof errorMessage === 'string') {
+	          return _react2.default.createElement(_ErrorModal2.default, { message: errorMessage });
+	        }
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -25106,7 +25122,8 @@
 	          'Get Weather'
 	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
-	        renderMessage()
+	        renderMessage(),
+	        renderError()
 	      );
 	    }
 	  }]);
@@ -26905,6 +26922,93 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 253 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ErrorModal = function (_React$Component) {
+	  _inherits(ErrorModal, _React$Component);
+
+	  function ErrorModal(props) {
+	    _classCallCheck(this, ErrorModal);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ErrorModal).call(this, props));
+	  }
+
+	  _createClass(ErrorModal, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var modal = new Foundation.Reveal($('#error-modal'));
+	      modal.open();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var title = _props.title;
+	      var message = _props.message;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          message
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button hollow', 'data-close': '' },
+	            'Ok'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ErrorModal;
+	}(_react2.default.Component);
+
+	ErrorModal.propTypes = {
+	  title: _react2.default.PropTypes.string,
+	  message: _react2.default.PropTypes.string.isRequired
+	};
+
+	ErrorModal.defaultProps = {
+	  title: 'Error'
+	};
+
+	exports.default = ErrorModal;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }
 /******/ ]);
