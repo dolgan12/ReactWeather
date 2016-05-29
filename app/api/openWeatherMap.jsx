@@ -13,7 +13,10 @@ module.exports = {
       if(res.data.cod && res.data.message){
         throw new Error(res.data.message);
       }else {
-        return res.data.main.temp;
+        return {
+          temp:res.data.main.temp,
+          location: res.data.name
+        };
       }
     }, (res) => {
       throw new Error(res.data.message);

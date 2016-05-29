@@ -25065,10 +25065,10 @@
 	      var then = this;
 
 	      this.setState({ isLoading: true });
-	      _openweathermap2.default.getTemp(location).then(function (temp) {
+	      _openweathermap2.default.getTemp(location).then(function (data) {
 	        then.setState({
-	          location: location,
-	          temp: temp,
+	          location: data.location,
+	          temp: data.temp,
 	          isLoading: false
 	        });
 	      }, function (errorMessage) {
@@ -25089,7 +25089,7 @@
 	        if (isLoading) {
 	          return _react2.default.createElement(
 	            'h3',
-	            null,
+	            { className: 'text-center' },
 	            'Fetching weather...'
 	          );
 	        } else if (temp && location) {
@@ -25101,8 +25101,8 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h3',
-	          null,
+	          'h1',
+	          { className: 'text-center' },
 	          'Get Weather'
 	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
@@ -25177,7 +25177,7 @@
 	          _react2.default.createElement('input', { type: 'text', ref: 'location', placeholder: 'Enter city name' }),
 	          _react2.default.createElement(
 	            'button',
-	            null,
+	            { className: 'expanded button hollow' },
 	            'Get Weather'
 	          )
 	        )
@@ -25195,7 +25195,7 @@
 /* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -25212,16 +25212,15 @@
 	  var location = _ref.location;
 
 	  return _react2.default.createElement(
-	    'div',
+	    "div",
 	    null,
 	    _react2.default.createElement(
-	      'h3',
-	      null,
-	      'It is ',
+	      "h3",
+	      { className: "text-center" },
+	      "It is ",
 	      temp,
-	      ' in ',
-	      location,
-	      '!'
+	      " in ",
+	      location
 	    )
 	  );
 	};
@@ -25252,7 +25251,10 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.main.temp;
+	        return {
+	          temp: res.data.main.temp,
+	          location: res.data.name
+	        };
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);

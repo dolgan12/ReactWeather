@@ -15,10 +15,10 @@ class Weather extends React.Component {
     var then = this;
 
     this.setState({isLoading: true});
-    openweathermap.getTemp(location).then( (temp) =>{
+    openweathermap.getTemp(location).then( (data) =>{
       then.setState({
-        location: location,
-        temp: temp,
+        location: data.location,
+        temp: data.temp,
         isLoading: false
       });
     }, (errorMessage) => {
@@ -33,7 +33,7 @@ class Weather extends React.Component {
 
     function renderMessage () {
       if (isLoading){
-        return <h3>Fetching weather...</h3>;
+        return <h3 className="text-center">Fetching weather...</h3>;
       }else if(temp && location){
         return <WeatherMessage location={location} temp={temp}/>
       }
@@ -41,7 +41,7 @@ class Weather extends React.Component {
 
     return (
       <div>
-        <h3>Get Weather</h3>
+        <h1 className="text-center">Get Weather</h1>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
       </div>

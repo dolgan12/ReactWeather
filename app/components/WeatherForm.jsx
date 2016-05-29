@@ -7,7 +7,7 @@ class WeatherForm extends React.Component {
   }
   onFormSubmit(e) {
     e.preventDefault();
-    
+
     var location = this.refs.location.value;
     if(location.length > 0){
       this.refs.location.value = '';
@@ -20,7 +20,7 @@ class WeatherForm extends React.Component {
       <div>
         <form onSubmit={this.onFormSubmit}>
           <input type="text" ref="location" placeholder="Enter city name"/>
-          <button>Get Weather</button>
+          <button className="expanded button hollow">Get Weather</button>
         </form>
       </div>
     );
