@@ -26437,7 +26437,7 @@
 /* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26451,9 +26451,47 @@
 
 	var About = function About(props) {
 	  return _react2.default.createElement(
-	    'h3',
+	    "div",
 	    null,
-	    'About Component'
+	    _react2.default.createElement(
+	      "h1",
+	      { className: "text-center" },
+	      "About"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "This is a weather application build on React."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "Here are some of the tools i used:"
+	    ),
+	    _react2.default.createElement(
+	      "ul",
+	      null,
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "https://facebook.github.io/react" },
+	          "React"
+	        ),
+	        " - This is the JavaScript framework used."
+	      ),
+	      _react2.default.createElement(
+	        "li",
+	        null,
+	        _react2.default.createElement(
+	          "a",
+	          { href: "http://openweathermap.org" },
+	          "Open Weather Map"
+	        ),
+	        " - I used Open Weather Map api for weather data."
+	      )
+	    )
 	  );
 	};
 	exports.default = About;
