@@ -19766,7 +19766,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(8);
@@ -19780,17 +19780,20 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Main = function Main(props) {
-	    return _react2.default.createElement(
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_Nav2.default, null),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(_Nav2.default, null),
-	        _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Main component'
-	        ),
+	        { className: 'medium-6 large-4 columns small-centered' },
 	        props.children
-	    );
+	      )
+	    )
+	  );
 	};
 
 	exports.default = Main;
@@ -26469,6 +26472,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(168);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Examples = function Examples(props) {
@@ -26476,14 +26481,36 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(
-	      'h3',
-	      null,
+	      'h1',
+	      { className: 'text-center' },
 	      'Examples'
 	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'Welcome to examples page!'
+	      'Here are a few example locations to try out:'
+	    ),
+	    _react2.default.createElement(
+	      'ol',
+	      null,
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/?location=Stockholm' },
+	          'Stockholm, Sweden'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/?location=phuket' },
+	          'Phuket, Thailand'
+	        )
+	      )
 	    )
 	  );
 	};
